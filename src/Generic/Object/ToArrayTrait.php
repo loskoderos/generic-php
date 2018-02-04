@@ -1,6 +1,6 @@
 <?php
 
-namespace LosKoderos\Generic\Object;
+namespace Generic\Object;
 
 trait ToArrayTrait
 {
