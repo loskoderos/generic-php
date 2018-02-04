@@ -1,0 +1,31 @@
+{
+    "name": "generic-php",
+    "type": "library",
+    "description": "Generic PHP utilities library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lukasz Cepowski",
+            "email": "lukasz@cepowski.com",
+            "homepage": "https://cepa.io"
+        }
+    ],
+    "support": {
+        "email": "hello@loskoderos.com"
+    },
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "LosKoderos\\Generic\\": "src/LosKoderos/Generic"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LosKoderos\\Generic\\": "test/LosKoderos/Generic"
+        }
+    }
+}
