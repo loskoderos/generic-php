@@ -24,7 +24,11 @@ trait ToArrayTrait
                 if (method_exists($value, 'toArray')) {
                     $value = $value->toArray();
                 } else {
-                    throw new \UnexpectedValueException("Nested object does not have toArray method");
+                    $propertyName = $property->getName();
+                    $objectClass = get_class($value);
+                    throw new \UnexpectedValueException(
+                            "Property {$propertyName}: ".
+                            "Nested object of type {$objectClass} does not have toArray method");
                 }
             }
             $array[$property->getName()] = $value;
