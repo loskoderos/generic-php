@@ -105,7 +105,7 @@ class Collection implements CollectionInterface
             } else {
                 $value = $item;
             }
-            $array[$key] = $item;
+            $array[$key] = $value;
         }
         return $array;
     }
