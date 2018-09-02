@@ -61,7 +61,7 @@ class MockUserEntity extends Entity
     }
 }
 
-class SmartObjectTest extends TestCase
+class EntityTest extends TestCase
 {
     public function testEmptySmartObjectToArray()
     {
