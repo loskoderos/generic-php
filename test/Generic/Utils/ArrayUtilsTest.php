@@ -2,16 +2,16 @@
 
 namespace Generic\Utils;
 
-use Generic\Object\Object;
+use Generic\Entity\Entity;
 use Generic\Collection\Collection;
 use PHPUnit\Framework\TestCase;
 
-class MockItemObject extends Object
+class MockItemEntity extends Entity
 {
     public $value;
 }
 
-class MockObject extends Object
+class MockEntity extends Entity
 {
     public $x;
     protected $y;
@@ -34,20 +34,20 @@ class MockObject extends Object
         $this->map = new Collection();
         $this->map->foo = 'bar';
         $this->map->xyz = 666;
-        $this->map->item = new MockItemObject(['value' => True]);
+        $this->map->item = new MockItemEntity(['value' => True]);
         
         $this->items = new Collection();
         for ($i = 0; $i < 3; $i++) {
-            $this->items->add(new MockItemObject(['value' => $i]));
+            $this->items->add(new MockItemEntity(['value' => $i]));
         }
     }
 }
 
 class ArrayUtilsTest extends TestCase
 {
-    public function testArrayToObjectConversion()
+    public function testArrayToSmartObjectConversion()
     {
-        $mock = new MockObject();
+        $mock = new MockEntity();
         $o = ArrayUtils::arrayToStdClass($mock->toArray());
         $this->assertTrue($o instanceof \stdClass);
 

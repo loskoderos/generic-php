@@ -1,6 +1,6 @@
 <?php
 
-namespace Generic\Object;
+namespace Generic\Entity;
 
 interface PopulateInterface
 {

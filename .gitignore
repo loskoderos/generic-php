@@ -1,6 +1,7 @@
 /vendor
 /test/results
-.project
-.settings
-.buildpath
+/.project
+/.settings
+/.buildpath
 /nbproject
+/.idea

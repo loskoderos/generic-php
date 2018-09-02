@@ -1,10 +1,10 @@
 <?php
 
-namespace Generic\Object;
+namespace Generic\Entity;
 
 use PHPUnit\Framework\TestCase;
 
-class MockObject extends Object
+class MockEntity extends Entity
 {
     public $x;
     protected $y;
@@ -12,7 +12,7 @@ class MockObject extends Object
     static $foo; // This one should always be ignored.
 }
 
-class MockUserObject extends Object
+class MockUserEntity extends Entity
 {
     public $firstName;
     protected $lastName;
@@ -61,17 +61,17 @@ class MockUserObject extends Object
     }
 }
 
-class ObjectTest extends TestCase
+class SmartObjectTest extends TestCase
 {
-    public function testEmptyObjectToArray()
+    public function testEmptySmartObjectToArray()
     {
-        $object = new Object();
+        $object = new Entity();
         $this->assertEquals(0, count($object->toArray()));
     }
     
-    public function testEmptyMockObjectToArray()
+    public function testEmptyMockSmartObjectToArray()
     {
-        $object = new MockObject();
+        $object = new MockEntity();
         $array = $object->toArray();
         $this->assertEquals(3, count($array));
         $this->assertNull($array['x']);
@@ -79,15 +79,15 @@ class ObjectTest extends TestCase
         $this->assertNull($array['z']);
     }
     
-    public function testPopulateOnObject()
+    public function testPopulateOnSmartObject()
     {
-        $object = new Object(['abc' => 123]);
+        $object = new Entity(['abc' => 123]);
         $this->assertEquals(0, count($object->toArray()));
     }
     
-    public function testPopulateOnMockObject()
+    public function testPopulateOnMockSmartObject()
     {
-        $object = new MockObject([
+        $object = new MockEntity([
             'x' => 123,
             'y' => 456,
             'z' => 789
@@ -96,16 +96,16 @@ class ObjectTest extends TestCase
         $this->assertEquals(3, count($array));
     }
     
-    public function testMockUserObject()
+    public function testMockUserSmartObject()
     {
-        $user = new MockUserObject([
+        $user = new MockUserEntity([
             'firstName' => 'Test',
             'lastName' => 'Testowski',
             'email' => 'test.testowski@domain.tld'
         ]);
         $array = $user->toArray();
-        $this->assertEquals(3, MockUserObject::$settersCounter);
-        $this->assertEquals(3, MockUserObject::$gettersCounter);
+        $this->assertEquals(3, MockUserEntity::$settersCounter);
+        $this->assertEquals(3, MockUserEntity::$gettersCounter);
         $this->assertEquals(3, count($array));
         $this->assertEquals('Test', $array['firstName']);
         $this->assertEquals('Testowski', $array['lastName']);

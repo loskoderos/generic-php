@@ -1,8 +1,8 @@
 <?php
 
-namespace Generic\Object;
+namespace Generic\Entity;
 
-class Object implements PopulateInterface, ToArrayInterface
+class Entity implements PopulateInterface, ToArrayInterface
 {
     use PopulateTrait;
     use ToArrayTrait;

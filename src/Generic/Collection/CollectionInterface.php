@@ -2,8 +2,8 @@
 
 namespace Generic\Collection;
 
-use Generic\Object\PopulateInterface;
-use Generic\Object\ToArrayInterface;
+use Generic\Entity\PopulateInterface;
+use Generic\Entity\ToArrayInterface;
 
 interface CollectionInterface
     extends
