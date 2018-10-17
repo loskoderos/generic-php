@@ -17,6 +17,7 @@ class MockUserEntity extends Entity
     public $firstName;
     protected $lastName;
     private $email;
+    protected $createdAt;
 
     public static $settersCounter = 0; 
     public static $gettersCounter = 0;
@@ -101,14 +102,16 @@ class EntityTest extends TestCase
         $user = new MockUserEntity([
             'firstName' => 'Test',
             'lastName' => 'Testowski',
-            'email' => 'test.testowski@domain.tld'
+            'email' => 'test.testowski@domain.tld',
+            'createdAt' => new \DateTime('2018-06-22')
         ]);
         $array = $user->toArray();
         $this->assertEquals(3, MockUserEntity::$settersCounter);
         $this->assertEquals(3, MockUserEntity::$gettersCounter);
-        $this->assertEquals(3, count($array));
+        $this->assertEquals(4, count($array));
         $this->assertEquals('Test', $array['firstName']);
         $this->assertEquals('Testowski', $array['lastName']);
         $this->assertEquals('test.testowski@domain.tld', $array['email']);
+        $this->assertEquals('2018-06-22 00:00:00', $array['createdAt']);
     }
 }

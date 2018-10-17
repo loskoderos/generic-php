@@ -23,6 +23,8 @@ trait ToArrayTrait
             if (is_object($value)) {
                 if (method_exists($value, 'toArray')) {
                     $value = $value->toArray();
+                } else if ($value instanceof \DateTime) {
+                    $value = $value->format('Y-m-d H:i:s');
                 } else {
                     $propertyName = $property->getName();
                     $objectClass = get_class($value);
