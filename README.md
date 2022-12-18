@@ -1,6 +1,6 @@
 # Generic PHP
 
-Dustbin for all PHP code thats Generic.
+Dustbin for all PHP code thats Generic
 
 ## What's inside?
 
