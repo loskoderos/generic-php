@@ -1,17 +1,18 @@
 <?php
 
-namespace Generic\Utils;
+namespace Tests\Koderos\Generic;
 
-use Generic\Entity\Entity;
-use Generic\Collection\Collection;
 use PHPUnit\Framework\TestCase;
+use Koderos\Generic\Collection\Collection;
+use Koderos\Generic\Model\Model;
+use Koderos\Generic\Utils\ArrayUtils;
 
-class MockItemEntity extends Entity
+class MockItemModel extends Model
 {
     public $value;
 }
 
-class MockEntity extends Entity
+class ArrayUtilsMockModel extends Model
 {
     public $x;
     protected $y;
@@ -34,11 +35,11 @@ class MockEntity extends Entity
         $this->map = new Collection();
         $this->map->foo = 'bar';
         $this->map->xyz = 666;
-        $this->map->item = new MockItemEntity(['value' => True]);
+        $this->map->item = new MockItemModel(['value' => True]);
         
         $this->items = new Collection();
         for ($i = 0; $i < 3; $i++) {
-            $this->items->add(new MockItemEntity(['value' => $i]));
+            $this->items->add(new MockItemModel(['value' => $i]));
         }
     }
 }
@@ -47,7 +48,7 @@ class ArrayUtilsTest extends TestCase
 {
     public function testArrayToSmartObjectConversion()
     {
-        $mock = new MockEntity();
+        $mock = new ArrayUtilsMockModel();
         $o = ArrayUtils::arrayToStdClass($mock->toArray());
         $this->assertTrue($o instanceof \stdClass);
 

@@ -1,7 +1,8 @@
 /vendor
 /test/results
-/.project
-/.settings
-/.buildpath
+.project
+.settings
+.buildpath
+.idea
 /nbproject
-/.idea
+.phpunit*

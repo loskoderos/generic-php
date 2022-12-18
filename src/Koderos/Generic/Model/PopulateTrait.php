@@ -1,6 +1,6 @@
 <?php
 
-namespace Generic\Entity;
+namespace Koderos\Generic\Model;
 
 trait PopulateTrait
 {
@@ -8,8 +8,9 @@ trait PopulateTrait
      * Populate object.
      * @param mixed $collection
      * @return PopulateTrait
+     * @throws \ReflectionException
      */
-    public function populate($collection)
+    public function populate($collection): PopulateInterface
     {
         if (empty($collection)) {
             return $this;

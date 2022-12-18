@@ -1,6 +1,6 @@
 <?php
 
-namespace Generic\Collection;
+namespace Koderos\Generic\Collection;
 
 class Collection implements CollectionInterface
 {
@@ -23,7 +23,7 @@ class Collection implements CollectionInterface
      * @param mixed $value
      * @return CollectionInterface
      */
-    public function add($value)
+    public function add($value): CollectionInterface
     {
         return $this->set(null, $value);
     }
@@ -34,7 +34,7 @@ class Collection implements CollectionInterface
      * @param mixed $value
      * @return Collection
      */
-    public function set($name, $value)
+    public function set($name, $value): CollectionInterface
     {
         if (isset($name)) {
             $this->collection[$name] = $value;
@@ -63,7 +63,7 @@ class Collection implements CollectionInterface
      * @param mixed $name
      * @return boolean
      */
-    public function has($name)
+    public function has($name): bool
     {
         return isset($this->collection[$name]);
     }
@@ -73,7 +73,7 @@ class Collection implements CollectionInterface
      * @param mixed $name
      * @return Collection
      */
-    public function remove($name)
+    public function remove($name): CollectionInterface
     {
         unset($this->collection[$name]);
         return $this;
@@ -83,7 +83,7 @@ class Collection implements CollectionInterface
      * Get collection items.
      * @return array
      */
-    public function items()
+    public function items(): array
     {
         return $this->collection;
     }
@@ -92,7 +92,7 @@ class Collection implements CollectionInterface
      * Alias to getAll.
      * @return array
      */
-    public function toArray()
+    public function toArray(): array
     {
         $array = array();
         foreach ($this->collection as $key => $item) {
@@ -112,9 +112,9 @@ class Collection implements CollectionInterface
 
     /**
      * Clear collection.
-     * @return Collection
+     * @return CollectionInterface
      */
-    public function clear()
+    public function clear(): CollectionInterface
     {
         $this->collection = array();
         return $this;
@@ -124,7 +124,7 @@ class Collection implements CollectionInterface
      * Convert collection to single string.
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return var_export($this->collection, true);
     }
@@ -134,7 +134,7 @@ class Collection implements CollectionInterface
      * @param mixed $offset
      * @return boolean
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->has($offset);
     }
@@ -172,7 +172,7 @@ class Collection implements CollectionInterface
      * Countable
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->collection);
     }
@@ -181,7 +181,7 @@ class Collection implements CollectionInterface
      * Serializable
      * @return string
      */
-    public function serialize()
+    public function serialize(): string
     {
         return serialize($this->toArray());
     }
@@ -199,7 +199,7 @@ class Collection implements CollectionInterface
      * IteratorAggregate
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->collection);
     }
@@ -207,9 +207,9 @@ class Collection implements CollectionInterface
     /**
      * Populate.
      * @param array|object $collection
-     * @return Collection
+     * @return CollectionInterface
      */
-    public function populate($collection)
+    public function populate($collection): CollectionInterface
     {
         if (is_object($collection)) {
             if ($collection instanceof \IteratorAggregate) {
@@ -233,9 +233,9 @@ class Collection implements CollectionInterface
 
     /**
      * Reset pointer.
-     * @return \Axon\Generic\Collection\Collection
+     * @return CollectionInterface
      */
-    public function reset()
+    public function reset(): CollectionInterface
     {
         reset($this->collection);
         return $this;

@@ -1,8 +1,9 @@
 <?php
 
-namespace Generic\Collection;
+namespace Tests\Koderos\Generic\Collection;
 
 use PHPUnit\Framework\TestCase;
+use Koderos\Generic\Collection\Collection;
 
 class CollectionTest extends TestCase
 {
@@ -84,7 +85,7 @@ class CollectionTest extends TestCase
     public function testToString()
     {
         $collection = new Collection(array('abc' => 123));
-        $this->assertContains("'abc' => 123", (string) $collection);
+        $this->assertStringContainsString("'abc' => 123", (string) $collection);
     }
 
     public function testSerialization()

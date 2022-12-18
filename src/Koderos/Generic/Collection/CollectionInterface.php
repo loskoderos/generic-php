@@ -1,9 +1,9 @@
 <?php
 
-namespace Generic\Collection;
+namespace Koderos\Generic\Collection;
 
-use Generic\Entity\PopulateInterface;
-use Generic\Entity\ToArrayInterface;
+use Koderos\Generic\Model\PopulateInterface;
+use Koderos\Generic\Model\ToArrayInterface;
 
 interface CollectionInterface
     extends
@@ -18,27 +18,27 @@ interface CollectionInterface
      * Clear items.
      * @return CollectionInterface
      */
-    public function clear();
+    public function clear(): CollectionInterface;
 
     /**
      * Get raw array with items.
      * @return array
      */
-    public function items();
+    public function items(): array;
 
     /**
      * Add a value at the end of collection.
      * @param mixed $value
      * @return CollectionInterface
      */
-    public function add($value);
+    public function add($value): CollectionInterface;
 
     /**
      * Set key.
      * @param string|int $key
      * @param mixed $value
      */
-    public function set($key, $value);
+    public function set($key, $value): CollectionInterface;
 
     /**
      * Get key.
@@ -53,20 +53,20 @@ interface CollectionInterface
      * @param string|int $key
      * @return boolean
      */
-    public function has($key);
+    public function has($key): bool;
 
     /**
      * Remove key.
      * @param string|int $key
      * @return CollectionInterface
      */
-    public function remove($key);
+    public function remove($key): CollectionInterface;
 
     /**
      * Reset collection pointer.
      * @return CollectionInterface
      */
-    public function reset();
+    public function reset(): CollectionInterface;
 
     /**
      * Get first element.

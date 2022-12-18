@@ -1,10 +1,11 @@
 <?php
 
-namespace Generic\Entity;
+namespace Tests\Koderos\Generic;
 
 use PHPUnit\Framework\TestCase;
+use Koderos\Generic\Model\Model;
 
-class MockEntity extends Entity
+class MockModel extends Model
 {
     public $x;
     protected $y;
@@ -12,7 +13,7 @@ class MockEntity extends Entity
     static $foo; // This one should always be ignored.
 }
 
-class MockUserEntity extends Entity
+class MockUserModel extends Model
 {
     public $firstName;
     protected $lastName;
@@ -62,17 +63,17 @@ class MockUserEntity extends Entity
     }
 }
 
-class EntityTest extends TestCase
+class ModelTest extends TestCase
 {
     public function testEmptySmartObjectToArray()
     {
-        $object = new Entity();
+        $object = new Model();
         $this->assertEquals(0, count($object->toArray()));
     }
     
     public function testEmptyMockSmartObjectToArray()
     {
-        $object = new MockEntity();
+        $object = new MockModel();
         $array = $object->toArray();
         $this->assertEquals(3, count($array));
         $this->assertNull($array['x']);
@@ -82,13 +83,13 @@ class EntityTest extends TestCase
     
     public function testPopulateOnSmartObject()
     {
-        $object = new Entity(['abc' => 123]);
+        $object = new Model(['abc' => 123]);
         $this->assertEquals(0, count($object->toArray()));
     }
     
     public function testPopulateOnMockSmartObject()
     {
-        $object = new MockEntity([
+        $object = new MockModel([
             'x' => 123,
             'y' => 456,
             'z' => 789
@@ -99,19 +100,19 @@ class EntityTest extends TestCase
     
     public function testMockUserSmartObject()
     {
-        $user = new MockUserEntity([
+        $user = new MockUserModel([
             'firstName' => 'Test',
             'lastName' => 'Testowski',
             'email' => 'test.testowski@domain.tld',
             'createdAt' => new \DateTime('2018-06-22')
         ]);
         $array = $user->toArray();
-        $this->assertEquals(3, MockUserEntity::$settersCounter);
-        $this->assertEquals(3, MockUserEntity::$gettersCounter);
+        $this->assertEquals(3, MockUserModel::$settersCounter);
+        $this->assertEquals(3, MockUserModel::$gettersCounter);
         $this->assertEquals(4, count($array));
         $this->assertEquals('Test', $array['firstName']);
         $this->assertEquals('Testowski', $array['lastName']);
         $this->assertEquals('test.testowski@domain.tld', $array['email']);
-        $this->assertEquals('2018-06-22 00:00:00', $array['createdAt']);
+        $this->assertStringStartsWith('2018-06-22T00:00:00', $array['createdAt']);
     }
 }

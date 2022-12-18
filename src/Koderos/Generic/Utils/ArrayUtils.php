@@ -1,6 +1,6 @@
 <?php
 
-namespace Generic\Utils;
+namespace Koderos\Generic\Utils;
 
 class ArrayUtils
 {
@@ -9,7 +9,7 @@ class ArrayUtils
      * @param array $array
      * @return \stdClass
      */
-    public static function arrayToStdClass(array $array)
+    public static function arrayToStdClass(array $array): \stdClass
     {
         $object = new \stdClass();
         foreach ($array as $k => $v) {
@@ -45,9 +45,9 @@ class ArrayUtils
     /**
      * Check if array is an associative one.
      * @param array $array
-     * @return boolean
+     * @return bool
      */
-    public static function isAssocArray(array $array)
+    public static function isAssocArray(array $array): bool
     {
         return count(array_filter(array_keys($array), 'is_string')) > 0;
     }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Generic\Entity;
+namespace Koderos\Generic\Model;
 
-class Entity implements PopulateInterface, ToArrayInterface
+class Model implements PopulateInterface, ToArrayInterface
 {
     use PopulateTrait;
     use ToArrayTrait;
-    
+
     public function __construct($collection = null)
     {
         $this->populate($collection);
