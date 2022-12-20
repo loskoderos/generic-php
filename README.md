@@ -7,7 +7,7 @@ Dustbin for all PHP code thats Generic
 * Koderos\Generic\ClassFactory - Object factory used to override class types.
 * Koderos\Generic\Collection - Generic collection implementation.
 * Koderos\Generic\Model - Generic model implementation.
-* Koderos\Generic\Utils - Variious utils.
+* Koderos\Generic\Utils - Various utils.
 
 ## License
 
