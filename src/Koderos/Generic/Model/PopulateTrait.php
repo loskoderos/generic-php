@@ -2,6 +2,10 @@
 
 namespace Koderos\Generic\Model;
 
+use Koderos\Generic\ClassFactory\ClassFactory;
+
+use function Koderos\Generic\ClassFactory\cf_new;
+
 trait PopulateTrait
 {
     /**
@@ -30,7 +34,7 @@ trait PopulateTrait
                     if ($property->hasType()) {
                         $class = $property->getType()->getName();
                         if (class_exists($class)) {
-                            $value = new $class($value);
+                            $value = cf_new($class, $value);
                         }
                     }
                     $property->setValue($this, $value);
