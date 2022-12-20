@@ -63,6 +63,24 @@ class MockUserModel extends Model
     }
 }
 
+class MockModelLevel3 extends Model 
+{
+    public int $z = 0;
+}
+
+class MockModelLevel2 extends Model
+{
+    public int $y = 0;
+    public MockModelLevel3 $nested;
+}
+
+class MockModelLevel1 extends Model
+{
+    public int $x = 0;
+    public MockModelLevel2 $nested2;
+    public MockModelLevel3 $nested3;
+}
+
 class ModelTest extends TestCase
 {
     public function testEmptySmartObjectToArray()
@@ -114,5 +132,28 @@ class ModelTest extends TestCase
         $this->assertEquals('Testowski', $array['lastName']);
         $this->assertEquals('test.testowski@domain.tld', $array['email']);
         $this->assertStringStartsWith('2018-06-22T00:00:00', $array['createdAt']);
+    }
+
+    public function testPopulateOnNestedMocks()
+    {
+        $model = new MockModelLevel1([
+            'x' => 123,
+            'nested2' => [
+                'y' => 456,
+                'nested' => [
+                    'z' => 789
+                ]
+            ],
+            'nested3' => [
+                'z' => 987
+            ]
+        ]);
+        $this->assertEquals(123, $model->x);
+        $this->assertInstanceOf(MockModelLevel2::class, $model->nested2);
+        $this->assertEquals(456, $model->nested2->y);
+        $this->assertInstanceOf(MockModelLevel3::class, $model->nested2->nested);
+        $this->assertEquals(789, $model->nested2->nested->z);
+        $this->assertInstanceOf(MockModelLevel3::class, $model->nested3);
+        $this->assertEquals(987, $model->nested3->z);
     }
 }

@@ -27,6 +27,12 @@ trait PopulateTrait
                 } else {
                     $property = $reflector->getProperty($name);
                     $property->setAccessible(true);
+                    if ($property->hasType()) {
+                        $class = $property->getType()->getName();
+                        if (class_exists($class)) {
+                            $value = new $class($value);
+                        }
+                    }
                     $property->setValue($this, $value);
                 }
             }
