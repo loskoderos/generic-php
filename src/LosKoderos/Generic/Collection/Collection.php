@@ -5,7 +5,9 @@ namespace LosKoderos\Generic\Collection;
 class Collection implements CollectionInterface
 {
 
-    protected $collection = array();
+    protected array $collection = array();
+    protected $validator;
+    protected $filter;
 
     /**
      * Prepare collection.
@@ -16,6 +18,48 @@ class Collection implements CollectionInterface
         if (isset($collection)) {
             $this->populate($collection);
         }
+    }
+
+    /**
+     * Set validator.
+     * Validator function must return false to trigger an exception when an element is set.
+     * @param callable $validator
+     * @return Collection
+     */
+    public function setValidator(callable $validator): Collection
+    {
+        $this->validator = $validator;
+        return $this;
+    }
+
+    /**
+     * Get validator.
+     * @return callable
+     */
+    public function getValidator(): callable
+    {
+        return $this->validator;
+    }
+
+    /**
+     * Set filter.
+     * Filter function returns a new filtered value.
+     * @param callable $filter
+     * @return Collection
+     */
+    public function setFilter(callable $filter): Collection
+    {
+        $this->filter = $filter;
+        return $this;
+    }
+
+    /**
+     * Get filter.
+     * @return callable
+     */
+    public function getFilter(): callable
+    {
+        return $this->filter;
     }
 
     /**
@@ -36,6 +80,14 @@ class Collection implements CollectionInterface
      */
     public function set($name, $value): CollectionInterface
     {
+        if (isset($this->filter) && is_callable($this->filter)) {
+            $value = call_user_func($this->filter, $value);
+        }
+        if (isset($this->validator) && is_callable($this->validator)) {
+            if (false == call_user_func($this->validator, $value)) {
+                throw new \UnexpectedValueException("Invalid value");
+            }
+        }
         if (isset($name)) {
             $this->collection[$name] = $value;
         } else {
@@ -217,12 +269,12 @@ class Collection implements CollectionInterface
             } else if (method_exists($collection, 'toArray')) {
                 $items = $collection->toArray();
             } else {
-                throw new CollectionException("Invalid collection parameter");
+                throw new \UnexpectedValueException("Invalid collection parameter");
             }
         } else if (is_array($collection)) {
             $items = $collection;
         } else {
-            throw new CollectionException("Invalid collection parameter");
+            throw new \UnexpectedValueException("Invalid collection parameter");
         }
         foreach ($items as $name => $value) {
             $this->set($name, $value);

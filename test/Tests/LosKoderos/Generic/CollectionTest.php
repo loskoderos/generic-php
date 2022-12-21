@@ -154,4 +154,34 @@ class CollectionTest extends TestCase
         unset($collection->xxx);
         $this->assertFalse(isset($collection->xxx));
     }
+
+    public function testFilter()
+    {
+        $collection = new Collection();
+        $collection->setFilter(function ($value) {
+            return 'x' . $value . 'x';
+        });
+        for ($i = 0; $i < 10; $i++) {
+            $collection->add($i);
+        }
+        $this->assertEquals(10, count($collection));
+        for ($i = 0; $i < 10; $i++) {
+            $this->assertEquals('x' . $i . 'x', $collection[$i]);
+        }
+    }
+
+    public function testValidator()
+    {
+        $collection = new Collection();
+        $collection->setValidator(function ($value) {
+            return $value instanceof \stdClass;
+        });
+        $collection->add(new \stdClass);
+        $this->assertEquals(1, count($collection));
+        try {
+            $collection->add('xxx');
+        } catch (\UnexpectedValueException $exc) {
+            // pass
+        }
+    }
 }
