@@ -4,8 +4,6 @@ namespace LosKoderos\Generic\Model;
 
 use LosKoderos\Generic\ClassFactory\ClassFactory;
 
-use function LosKoderos\Generic\ClassFactory\cf_new;
-
 trait PopulateTrait
 {
     /**
@@ -34,7 +32,7 @@ trait PopulateTrait
                     if ($property->hasType()) {
                         $class = $property->getType()->getName();
                         if (class_exists($class)) {
-                            $value = cf_new($class, $value);
+                            $value = ClassFactory::getInstance()->create($class, $value);
                         }
                     }
                     $property->setValue($this, $value);
