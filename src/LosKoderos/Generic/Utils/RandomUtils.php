@@ -1,6 +1,6 @@
 <?php
 
-namespace Koderos\Generic\Utils;
+namespace LosKoderos\Generic\Utils;
 
 class RandomUtils
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Koderos\Generic\Model;
+namespace LosKoderos\Generic\Model;
 
-use Koderos\Generic\ClassFactory\ClassFactory;
+use LosKoderos\Generic\ClassFactory\ClassFactory;
 
-use function Koderos\Generic\ClassFactory\cf_new;
+use function LosKoderos\Generic\ClassFactory\cf_new;
 
 trait PopulateTrait
 {

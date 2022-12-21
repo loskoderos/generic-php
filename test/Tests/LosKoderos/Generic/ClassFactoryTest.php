@@ -1,17 +1,17 @@
 <?php
 
-namespace Tests\Koderos\Generic;
+namespace Tests\LosKoderos\Generic;
 
 use PHPUnit\Framework\TestCase;
-use Koderos\Generic\ClassFactory\ClassFactory;
+use LosKoderos\Generic\ClassFactory\ClassFactory;
 
-use function Koderos\Generic\ClassFactory\cf_clear;
-use function Koderos\Generic\ClassFactory\cf_get;
-use function Koderos\Generic\ClassFactory\cf_has;
-use function Koderos\Generic\ClassFactory\cf_new;
-use function Koderos\Generic\ClassFactory\cf_override;
-use function Koderos\Generic\ClassFactory\cf_remove;
-use function Koderos\Generic\ClassFactory\cf_set;
+use function LosKoderos\Generic\ClassFactory\cf_clear;
+use function LosKoderos\Generic\ClassFactory\cf_get;
+use function LosKoderos\Generic\ClassFactory\cf_has;
+use function LosKoderos\Generic\ClassFactory\cf_new;
+use function LosKoderos\Generic\ClassFactory\cf_override;
+use function LosKoderos\Generic\ClassFactory\cf_remove;
+use function LosKoderos\Generic\ClassFactory\cf_set;
 
 class ClassFactoryTest extends TestCase
 {

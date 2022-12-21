@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Koderos\Generic\Collection;
+namespace Tests\LosKoderos\Generic\Collection;
 
 use PHPUnit\Framework\TestCase;
-use Koderos\Generic\Collection\Collection;
+use LosKoderos\Generic\Collection\Collection;
 
 class CollectionTest extends TestCase
 {

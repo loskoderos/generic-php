@@ -1,6 +1,6 @@
 <?php
 
-namespace Koderos\Generic\ClassFactory;
+namespace LosKoderos\Generic\ClassFactory;
 
 require_once __DIR__ . '/functions.php';
 

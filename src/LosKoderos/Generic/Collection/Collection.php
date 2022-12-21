@@ -1,6 +1,6 @@
 <?php
 
-namespace Koderos\Generic\Collection;
+namespace LosKoderos\Generic\Collection;
 
 class Collection implements CollectionInterface
 {

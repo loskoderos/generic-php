@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Koderos\Generic;
+namespace Tests\LosKoderos\Generic;
 
 use PHPUnit\Framework\TestCase;
-use Koderos\Generic\Model\Model;
+use LosKoderos\Generic\Model\Model;
 
 class MockModel extends Model
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Koderos\Generic\Model;
+namespace LosKoderos\Generic\Model;
 
 interface ToArrayInterface
 {

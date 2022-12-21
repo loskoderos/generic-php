@@ -1,6 +1,6 @@
 <?php
 
-namespace Koderos\Generic\ClassFactory;
+namespace LosKoderos\Generic\ClassFactory;
 
 /**
  * Helper functions for ClassFactory.

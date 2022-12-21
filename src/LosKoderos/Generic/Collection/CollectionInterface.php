@@ -1,9 +1,9 @@
 <?php
 
-namespace Koderos\Generic\Collection;
+namespace LosKoderos\Generic\Collection;
 
-use Koderos\Generic\Model\PopulateInterface;
-use Koderos\Generic\Model\ToArrayInterface;
+use LosKoderos\Generic\Model\PopulateInterface;
+use LosKoderos\Generic\Model\ToArrayInterface;
 
 interface CollectionInterface
     extends

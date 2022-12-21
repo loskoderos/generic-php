@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Koderos\Generic;
+namespace Tests\LosKoderos\Generic;
 
 use PHPUnit\Framework\TestCase;
-use Koderos\Generic\Utils\RandomUtils;
+use LosKoderos\Generic\Utils\RandomUtils;
 
 class RandomUtilsTest extends TestCase
 {

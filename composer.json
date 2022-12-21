@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Koderos\\Generic\\": "src/Koderos/Generic"
+            "LosKoderos\\Generic\\": "src/LosKoderos/Generic"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "test/Tests"
+            "Tests\\LosKoderos\\": "test/Tests/LosKoderos"
         }
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Koderos\Generic;
+namespace Tests\LosKoderos\Generic;
 
 use PHPUnit\Framework\TestCase;
-use Koderos\Generic\Collection\Collection;
-use Koderos\Generic\Model\Model;
-use Koderos\Generic\Utils\ArrayUtils;
+use LosKoderos\Generic\Collection\Collection;
+use LosKoderos\Generic\Model\Model;
+use LosKoderos\Generic\Utils\ArrayUtils;
 
 class MockItemModel extends Model
 {
