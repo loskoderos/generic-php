@@ -32,7 +32,11 @@ trait PopulateTrait
                     if ($property->hasType()) {
                         $class = $property->getType()->getName();
                         if (class_exists($class)) {
-                            $value = ClassFactory::getInstance()->create($class, $value);
+                            if (is_object($value) && get_class($value) == $class) {
+                                // Skip, dont pass one object into another of the same type.
+                            } else {
+                                $value = ClassFactory::getInstance()->create($class, $value);
+                            }
                         }
                     }
                     $property->setValue($this, $value);
