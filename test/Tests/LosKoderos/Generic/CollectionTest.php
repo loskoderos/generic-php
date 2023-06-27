@@ -100,6 +100,19 @@ class CollectionTest extends TestCase
         $this->assertEquals(456, $b->get('def'));
     }
 
+    public function testSerializationPHP8()
+    {
+        $a = new Collection(array('abc' => 123, 'def' => 456));
+        $array = $a->__serialize();
+        $this->assertTrue(is_array($array));
+
+        $b = new Collection();
+        $b->__unserialize($array);
+
+        $this->assertEquals(123, $b->get('abc'));
+        $this->assertEquals(456, $b->get('def'));        
+    }
+
     public function testIterator()
     {
         $collection = new Collection(array(1, 2, 3));

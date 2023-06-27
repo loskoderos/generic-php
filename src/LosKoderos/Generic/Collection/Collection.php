@@ -186,7 +186,7 @@ class Collection implements CollectionInterface
      * @param mixed $offset
      * @return boolean
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return $this->has($offset);
     }
@@ -196,7 +196,7 @@ class Collection implements CollectionInterface
      * @param mixed $offset
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->get($offset);
     }
@@ -206,7 +206,7 @@ class Collection implements CollectionInterface
      * @param mixed $offset
      * @param mixed $value
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->set($offset, $value);
     }
@@ -215,7 +215,7 @@ class Collection implements CollectionInterface
      * ArrayAccess
      * @param mixed $offset
      */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         $this->remove($offset);
     }
@@ -245,6 +245,25 @@ class Collection implements CollectionInterface
     public function unserialize($serialized)
     {
         $this->populate(unserialize($serialized));
+    }
+
+    /**
+     * Compatibility with PHP 8.
+     * @return array
+     */
+    public function __serialize(): array
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * Compatibility with PHP 8.
+     * @param array $data
+     * @return void
+     */
+    public function __unserialize(array $data): void 
+    {
+        $this->populate($data);
     }
 
     /**
