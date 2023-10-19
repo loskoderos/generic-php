@@ -4,7 +4,7 @@ namespace LosKoderos\Generic\ClassFactory;
 
 require_once __DIR__ . '/functions.php';
 
-final class ClassFactory {
+class ClassFactory {
   private static ?ClassFactory $factory = null;
   private array $classMap = [];
 
