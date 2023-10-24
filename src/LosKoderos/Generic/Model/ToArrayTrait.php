@@ -29,33 +29,13 @@ trait ToArrayTrait
                 $serialized = array();
                 foreach ($value as $key => $item) {
                     if (is_object($item)) {
-                        if (method_exists($item, 'toArray')) {
-                            $item = $item->toArray();
-                        } else if ($item instanceof \DateTime) {
-                            $item = $item->format(\DateTime::RFC3339);
-                        } else {
-                            $propertyName = $property->getName();
-                            $objectClass = get_class($value);
-                            throw new \UnexpectedValueException(
-                                "Property {$propertyName}: ".
-                                "Nested object of type {$objectClass} does not have toArray method");
-                        }
+                        $item = Serializer::serialize($item);
                     }
                     $serialized[$key] = $item;
                 }
                 $value = $serialized;
             } else if (is_object($value)) {
-                if (method_exists($value, 'toArray')) {
-                    $value = $value->toArray();
-                } else if ($value instanceof \DateTime) {
-                    $value = $value->format(\DateTime::RFC3339);
-                } else {
-                    $propertyName = $property->getName();
-                    $objectClass = get_class($value);
-                    throw new \UnexpectedValueException(
-                        "Property {$propertyName}: ".
-                        "Nested object of type {$objectClass} does not have toArray method");
-                }
+                $value = Serializer::serialize($value);
             }
             $array[$property->getName()] = $value;
         }

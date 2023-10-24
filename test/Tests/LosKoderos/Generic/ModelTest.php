@@ -4,6 +4,7 @@ namespace Tests\LosKoderos\Generic;
 
 use PHPUnit\Framework\TestCase;
 use LosKoderos\Generic\Model\Model;
+use LosKoderos\Generic\Model\Serializer;
 
 class MockModel extends Model
 {
@@ -118,6 +119,10 @@ class ModelTest extends TestCase
     
     public function testMockUserSmartObject()
     {
+        Serializer::register(\DateTime::class, function (\DateTime $dt) {
+            return $dt->format(\DateTime::RFC3339);
+        });
+
         $user = new MockUserModel([
             'firstName' => 'Test',
             'lastName' => 'Testowski',
