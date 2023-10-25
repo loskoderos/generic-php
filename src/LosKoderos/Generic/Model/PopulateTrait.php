@@ -35,7 +35,7 @@ trait PopulateTrait
                             if (is_object($value) && get_class($value) == $class) {
                                 // Skip, dont pass one object into another of the same type.
                             } else {
-                                $value = ClassFactory::getInstance()->create($class, $value);
+                                $value = ClassFactory::new($class, $value);
                             }
                         }
                     }

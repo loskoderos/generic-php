@@ -2,7 +2,7 @@
 
 namespace LosKoderos\Generic\Model;
 
-final class Serializer
+class Serializer
 {
     protected static $serializers = [];
 

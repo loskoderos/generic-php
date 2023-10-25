@@ -2,63 +2,52 @@
 
 namespace LosKoderos\Generic\ClassFactory;
 
-require_once __DIR__ . '/functions.php';
-
 class ClassFactory {
-  private static ?ClassFactory $factory = null;
-  private array $classMap = [];
+  private static array $classMap = [];
 
-  private function __construct()
-  {
-  }
+  private function __construct() {}
 
   /**
    * Add overrides to class map.
    * Basic function used to override class created with cf_new helper function.
-   * @param array $overrides
-   * @return ClassFactory
+   * @param array $override
    */
-  public function override(array $overrides): ClassFactory
+  public static function override(array $override)
   {
-      foreach ($overrides as $key => $className) {
-          $this->set($key, $className);
+      foreach ($override as $key => $classname) {
+          self::set($key, $classname);
       }
-      return $this;
   }
 
   /**
    * Clear class map.
-   * @return ClassFactory
    */
-  public function clear(): ClassFactory
+  public static function clear()
   {
-      $this->classMap = [];
-      return $this;
+      self::$classMap = [];
   }
 
   /**
    * Set class map override.
    * @param string $key
-   * @param string $className
-   * @return ClassFactory
+   * @param string $classname
    */
-  public function set(string $key, string $className): ClassFactory
+  public static function set(string $key, string $classname)
   {
-      $this->classMap[$key] = $className;
-      return $this;
+      self::$classMap[$key] = $classname;
   }
 
   /**
-   * Get className by key.
+   * Get classname by key.
    * @param string $key
    * @return string
    */
-  public function get(string $key): string
+  public static function get(string $key): string
   {
-      if (!isset($this->classMap[$key])) {
+      if (!isset(self::$classMap[$key])) {
           return $key;
       }
-      return $this->classMap[$key];
+      return self::$classMap[$key];
   }
 
   /**
@@ -66,20 +55,18 @@ class ClassFactory {
    * @param string $key
    * @return bool
    */
-  public function has(string $key): bool
+  public static function has(string $key): bool
   {
-      return isset($this->classMap[$key]);
+      return isset(self::$classMap[$key]);
   }
 
   /**
    * Remove class map override.
    * @param string $key
-   * @return ClassFactory
    */
-  public function remove(string $key): ClassFactory
+  public static function remove(string $key)
   {
-      unset($this->classMap[$key]);
-      return $this;
+      unset(self::$classMap[$key]);
   }
 
   /**
@@ -88,21 +75,9 @@ class ClassFactory {
    * @param string $key
    * @return mixed
    */
-  public function create(string $key, ...$args)
+  public static function new(string $key, ...$args)
   {
-      $className = $this->get($key);
-      return new $className(...$args);
-  }
-
-  /**
-   * Get instance of the ClassFactory
-   * @return ClassFactory
-   */
-  public static function getInstance(): ClassFactory
-  {
-      if (!isset(self::$factory)) {
-          self::$factory = new self();
-      }
-      return self::$factory;
+      $classname = self::get($key);
+      return new $classname(...$args);
   }
 }
